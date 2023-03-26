@@ -1,0 +1,17 @@
+different questionns can be formed from the same question as :
+1. given number of rows print pascal's triangle
+2. given row and column print the value (that can be done using for r-1(C)c-1)
+3. print the nth column
+
+vector<vector<int>> generate(int numRows) 
+    {
+        vector<vector<int>> r(numRows);
+        for(int i=0 ; i<numRows ; i++)
+        {             
+            r[i].resize(i+1);
+            r[i][0] = r[i][i] = 1;
+            for(int j=1 ; j<i ; j++)
+                r[i][j] = r[i-1][j-1] + r[i-1][j];  
+        }
+        return r;
+    }

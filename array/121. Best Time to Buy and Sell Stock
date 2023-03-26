@@ -1,0 +1,16 @@
+#include<math.h>
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) 
+    {
+        int n=prices.size();
+        int min1=prices[0];
+        int maxP=0;
+        for(int price:prices)
+        {
+            min1=min(min1,price);
+            maxP=max(maxP,price-min1);
+        }
+        return maxP;
+    }
+};

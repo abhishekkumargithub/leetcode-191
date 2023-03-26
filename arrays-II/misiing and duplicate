@@ -1,0 +1,18 @@
+pair<int,int> ans;
+    int realsum=0;
+    int rangesum=0;
+    sort(arr.begin(),arr.end());
+    for(int i=0;i<n;i++)
+	{
+        if(arr[i]==arr[i+1])
+		{
+            ans.second=arr[i];
+        } 
+		else 
+		{
+            realsum += arr[i];
+        }
+        rangesum+=(i+1);// it starts with 0
+    }
+    ans.first=(rangesum-realsum);
+    return ans;
