@@ -1,0 +1,60 @@
+//Approach :
+Approach: We will have two pointers left and right. Pointer ‘left’ is used for maintaining the starting point of the substring while ‘right’ will maintain the endpoint of the substring.
+’ right’ pointer will move forward and check for the duplicate occurrence of the current element if found then the ‘left’ pointer will be shifted ahead so as to delete the duplicate elements.
+code:
+int solve(string str) 
+{
+  if(str.size()==0)
+      return 0;
+  int maxans = INT_MIN;
+  unordered_set < int > set;
+  int l = 0;
+  for (int r = 0; r < str.length(); r++) // outer loop for traversing the string
+  {
+    if (set.find(str[r]) != set.end()) //if duplicate element is found
+    {
+      while (l < r && set.find(str[r]) != set.end()) {
+        set.erase(str[l]);
+        l++;
+      }
+    }
+    set.insert(str[r]);
+    maxans = max(maxans, r - l + 1);
+  }
+  return maxans;
+}
+
+//another code:
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) 
+    {
+            int n=s.size();
+            int res=0;
+            for(int i=0;i<n;i++)
+            {
+                vector<bool> visited(256);
+                for (int j = i; j < n; j++) 
+                {
+                    // If current character is visited
+                    // Break the loop
+                    if (visited[s[j]] == true)
+                        break;
+        
+                    // Else update the result if
+                    // this window is larger, and mark
+                    // current character as visited.
+                    else 
+                    {
+                        res = max(res, j - i + 1);
+                        visited[s[j]] = true;
+                    }
+                }
+                // Remove the first character of previous
+                // window
+                visited[s[i]] = false;
+            }
+            return res;
+    }
+};
