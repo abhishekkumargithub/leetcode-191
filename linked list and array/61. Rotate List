@@ -1,0 +1,35 @@
+Approach:
+Steps to the algorithm:-
+
+Calculate the length of the list.
+Connect the last node to the first node, converting it to a circular linked list.
+Iterate to cut the link of the last node and start a node of k%length of the list rotated list.
+
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) 
+    {
+        if(head==NULL || head->next==NULL || k==0)
+            return head;
+        ListNode* temp=head;
+        
+        int length=1;
+        while(temp->next != NULL) 
+        {
+            ++length;
+            temp = temp->next;
+        }
+        //(link last node to first node)
+        temp->next=head;
+        k=k%length;//(when k is more than length of list)
+        int end=length-k;//(to get end of linked list)
+        
+        while(end--)
+            temp=temp->next;
+        //(breaking last node link and pointing to NULL)
+        head=temp->next;
+        temp->next=NULL;
+        
+        return head;
+    }
+};
