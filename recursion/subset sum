@@ -1,0 +1,23 @@
+//use recursion to check if a number in the array is to be taken or not taken
+
+void helper(vector<int> &ans, vector<int> arr, int size, int index, int sum)
+{
+        if(index >= size){
+            ans.push_back(sum);
+            return;
+        }
+        //not take
+        helper(ans, arr, size, index+1, sum);
+        //take
+        helper(ans, arr, size, index+1, sum+arr[index]);
+}
+
+vector<int> subsetSums(vector<int> arr, int N)
+    {
+        // Write Your Code here
+        vector<int> ans;
+        int sum = 0;
+        int index = 0;
+        helper(ans, arr, N, index, sum);
+        return ans;
+    }
