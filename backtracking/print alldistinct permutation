@@ -1,0 +1,41 @@
+
+//in this problem we will be using backtraking to solve the problem
+//APPROACH:
+//We have given the nums array, so we will declare an ans vector of vector that will store all the permutations.
+/*
+Call a recursive function that starts with zero, nums array, and ans vector.
+Declare a map and initialize it to zero and call the recursive function
+
+Base condition:
+Whenever the index reaches the end take the nums array and put it in ans vector and return.
+
+Recursion:
+Go from index to n – 1 and swap once the swap has been done call recursion for the next state. 
+After coming back from the recursion make sure you re-swap it because, for the next element, 
+the swap will not take place. 
+*/
+
+class Solution {
+public:
+    void comb(vector<int>& nums,vector<vector<int>> &ans,int index)
+    {
+            if(index==nums.size()) 
+            {
+                ans.push_back(nums);
+                return;
+            }
+            for(int i=index;i<nums.size();i++)
+            {
+                swap(nums[index],nums[i]);
+                comb(nums,ans,index+1);
+                swap(nums[index],nums[i]);
+            }
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) 
+    {
+        vector<vector<int>> ans;
+        comb(nums,ans,0);
+        return ans;
+    }
+};
