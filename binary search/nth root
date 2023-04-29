@@ -1,0 +1,18 @@
+/*
+In this implementation, we use the pow() function from the cmath library to calculate the nth root. 
+We then check if the difference between the nth root and its rounded value is very small (less than 1e-9)
+to determine if the nth root is an integer.
+Note that we use abs() to take the absolute value of the difference since it 
+could be negative if the rounded value is larger than the nth root. 
+Finally, we output the result to the console.
+*/
+
+int NthRoot(int n, int m) {
+  // Write your code here.
+  double root = pow(m, 1.0 / n);
+    if (abs(root - round(root)) < 1e-9) {
+        return round(root);
+    } else {
+        return -1;
+    }
+}
