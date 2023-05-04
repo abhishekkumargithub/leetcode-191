@@ -1,0 +1,33 @@
+//in this we are sorting in descending order 
+
+#include <bits/stdc++.h>
+
+void sort(stack<int> & st, int ele) 
+{
+	if(st.size()==0 || st.top()<=ele)
+	{
+		st.push(ele);
+		return;
+	}
+	int temp=st.top();
+	st.pop();
+	sort(st,ele);
+	st.push(temp);
+}
+
+void rec(stack<int> &st) 
+{
+  if(st.size() > 1) 
+  {
+	  int temp=st.top();
+	  st.pop();
+	  rec(st);
+	  sort(st,temp);
+  }
+}
+
+void sortStack(stack<int> &stack)
+{
+	// Write your code here
+	rec(stack);
+}
