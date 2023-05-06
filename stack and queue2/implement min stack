@@ -1,0 +1,68 @@
+//in this problem we are oging tp implement how to push pop and find minimum in a stack
+
+#include <bits/stdc++.h> 
+// Implement class for minStack.
+class minStack
+{
+	// Write your code here.
+	stack<int> s;
+	int mini;
+	public:
+		// Constructor
+		minStack() 
+		{ 
+			// Write your code here.
+			mini=1e+9;
+		}
+		
+		// Function to add another element equal to num at the top of stack.
+		void push(int num)
+		{
+			// Write your code here.
+			s.push(num);
+			if(mini>num)
+				mini=num;
+		}
+		
+		// Function to remove the top element of the stack.
+		int pop()
+		{
+			// Write your code here.
+			if(s.empty()) 
+				return -1;
+			int num=s.top();
+			s.pop();
+			if(mini==num)
+			{
+				mini=1e+9;
+				stack<int> z;
+				z=s;
+				while(!z.empty())
+				{
+					int n=z.top();
+					if(n<mini)
+						mini=n;
+					z.pop();
+				}
+			}
+			return num;
+		}
+		
+		// Function to return the top element of stack if it is present. Otherwise return -1.
+		int top()
+		{
+			// Write your code here.
+			if(s.empty())	
+				return -1;
+			return s.top();
+		}
+		
+		// Function to return minimum element of stack if it is present. Otherwise return -1.
+		int getMin()
+		{
+			// Write your code here.
+			if(mini==1e+9)
+				return -1;
+			return mini;
+		}
+};
